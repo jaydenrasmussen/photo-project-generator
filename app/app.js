@@ -1,41 +1,29 @@
-// J. Rasmussen 2017
-
-const Promise = require('bluebird');
+'use strict';
 const inquirer = require('inquirer');
 const createDirs = require('./createDirs');
 
 module.exports = (async () => {
     let config = {};
-    let schema = [
-        {
+    await inquirer.prompt({
             message: "How Many Cameras did you use?",
             name: "numCameras",
-        }
-    ]
-    let temp = 0;
-    await inquirer.prompt(schema)
-        .then(answer => {
-            temp = answer.numCameras
-            return config['numCameras'] = Number(temp);
         })
+        .then(answer => config['numCameras'] = Number(answer.numCameras))
         .catch(console.log);
-    for (; temp > 0; temp--) {
+    for (let i = config.numCameras; i > 0; i--) {
         await inquirer.prompt({
-            message: "What was the camera?",
+            message: `What was camera ${i}?`,
             name: "name"
         })
-        .then(res => {
-            return config['camera ' + temp] = res.name;
-        })
+        .then(res => config[`Camera-${i}`] = res.name)
         .catch(console.log);
     }
     await inquirer.prompt({
         message: "What day of the shoot is it?",
         name: 'day'
     })
-    .then(res => {
-        return config['day'] = Number(res.day);
-    })
+    .then(res => config['day'] = Number(res.day))
     .catch(console.log);
-    createDirs(config);
+
+    await createDirs(config);
 })();

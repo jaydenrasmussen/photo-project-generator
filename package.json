@@ -1,25 +1,23 @@
 {
   "name": "photo-project-generator",
-  "dependencies": {
-    "bluebird": "^3.5.0",
-    "fs-extra": "^4.0.1",
-    "inquirer": "^3.3.0",
-    "moment": "^2.19.1"
-  },
-  "author": "anonymous",
+  "author": "Jayden Rasmussen",
   "version": "0.0.1",
   "license": "ISC",
   "main": "./app/app.js",
   "bin": "./app/app.js",
   "scripts": {
     "start": "node ./app/app.js",
+    "fmt": "prettier --single-quote --arrow-parens avoid --tab-width 4 --print-width 80 --write \"{,!(node_modules)/**/}*.js\"",
+    "lint": "eslint . --fix",
     "test": "ava",
-    "test:watch": "ava --watch",
-    "format": "prettier --single-quote --tab-width 4 --print-width 120 --write \"{,!(node_modules)/**/}*.js\""
+    "build": "pkg ."
+  },
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "inquirer": "^5.2.0"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "rewire": "^2.5.2",
-    "sinon": "^3.2.1"
-  }
+    "ava": "^0.25.0"
+  },
+  "repository": "https://github.com/jaydenrasmussen/photo-project-generator.git"
 }
