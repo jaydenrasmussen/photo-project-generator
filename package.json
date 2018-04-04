@@ -1,7 +1,7 @@
 {
   "name": "photo-project-generator",
   "author": "Jayden Rasmussen",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "license": "ISC",
   "main": "./app/app.js",
   "bin": "./app/app.js",
